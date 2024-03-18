@@ -1,0 +1,14 @@
+version: '3.8'
+services:
+  frontend:
+    build: C:\\Users\\subhr\\AI-Resume-Builder\\ResumeAI\\ResumeBuilderAngular
+    ports:
+        - "80:80"
+    depends_on:
+      - backend
+  backend:
+      build: C:\\Users\\subhr\\AI-Resume-Builder\\ResumeAI\\ResumeBuilderBackend
+      ports:
+      - "4292:4292"
+      #volumes:
+      #- ./ResumeBuilderBackend/.env:/app/.env

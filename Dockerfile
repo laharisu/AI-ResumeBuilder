@@ -1,22 +1,15 @@
-#Build Stage defined 
-FROM node:20 AS build
-
+# Select Base Image
+FROM node:18
+#Set up the working directory
 WORKDIR /app
-#copy from Local machine to docker
+# Copy all of the files
 COPY . .
-#Dependecies installed and defined 
-RUN npm install --force
-RUN npm i -g @angular/cli
-RUN npm install -g angular-http-server
-
-#Create dist folder 
-RUN npm run build
-
-#Deployment with configuration with Nginx
-FROM nginx:alpine
-#Copy from previous stage Dist to this 
-COPY --from=build /app/dist/resumebuilder /usr/share/nginx/html
-
-EXPOSE 80
-
-CMD ["nginx", "-g", "daemon off;"]
+# Install dependencies
+RUN npm install
+RUN npm install -g typescript
+# build dist
+RUN tsc --build
+# Expose port to connect to the container
+EXPOSE 3000
+# Run the node command to start backend
+CMD [ "npm","run", "start" ]
