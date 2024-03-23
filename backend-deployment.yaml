@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: resumebuilderbackend
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: resumebuilderbackend
+  template:
+    metadata:
+      labels:
+        app: resumebuilderbackend
+    spec:
+      containers:
+      - name: resume-builder-aibked-k8
+        image: subhra11/buildingresumes-bkee:9
+        resources:
+          limits:
+            memory: "512Mi"
+            cpu: "500m"
+        ports:
+        - containerPort: 4292
