@@ -10,6 +10,6 @@ RUN npm install -g typescript
 # build dist
 RUN tsc --build
 # Expose port to connect to the container
-EXPOSE 3000
+EXPOSE 4292
 # Run the node command to start backend
 CMD [ "npm","run", "start" ]
